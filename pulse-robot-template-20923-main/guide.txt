@@ -1,0 +1,195 @@
+# Adel Saad Al-Matar Contracting Est. Website Guide
+
+## Company Information
+- English Name: Adel Saad Al-Matar Contracting Est.
+- Arabic Name: مؤسسة عادل سعد المطر للمقاولات
+- Also known as: Adel Saad Mater
+- C.R: 2250007423
+- Domains: amtc.com.sa | asmc.com.sa
+- Email: contact@asmc.com.sa
+- Phone: +966 54 955 6517, +966 59 080 7169
+- Address: 9P9F+8JH9P9F7H6 Al-Tarf, Saudi Arabia
+
+## How to Replace Logo and Images
+
+### Logo Replacement
+1. Replace the file `/public/logo.svg` with your company logo
+2. Recommended size: 200x80px or similar aspect ratio
+3. Supported formats: SVG (preferred), PNG, JPG
+
+### Hero Section Image
+1. Replace `/public/lovable-uploads/5663820f-6c97-4492-9210-9eaa1a8dc415.png` in `src/components/Hero.tsx`
+2. Add your main company/equipment image to `/public/` folder
+3. Update the image path in Hero.tsx line 167
+
+### Blog Section Images
+1. Blog images are located in `/public/lovable-uploads/` folder
+2. Replace with relevant construction/equipment images
+3. Update image paths in `src/components/BlogSection.tsx`
+
+## How to Edit Company Information
+
+### Company Name and Details
+1. Edit in `src/components/Navbar.tsx` (lines 60-63)
+2. Edit in `src/components/Footer.tsx` (lines 17-21)
+3. Update page title in `index.html`
+
+### Contact Information
+1. Main contact section: `src/components/ContactSection.tsx`
+2. Footer contact info: `src/components/Footer.tsx`
+3. Update phone numbers, email, and address as needed
+
+### About Us Content
+1. Edit company description in `src/components/AboutSection.tsx`
+2. Update mission and vision statements (lines 49-65)
+3. Modify company statistics (lines 8-13)
+
+## How to Update Services
+
+### Service Offerings
+1. Edit services array in `src/components/ServicesSection.tsx` (lines 6-40)
+2. Add/remove services as needed
+3. Update service descriptions and features
+
+### Service Icons
+1. Icons are from Lucide React library
+2. Change icon imports and assignments in ServicesSection.tsx
+3. Available icons: https://lucide.dev/icons/
+
+## How to Update Links and Social Media
+
+### Navigation Links
+1. Edit navigation items in `src/components/Navbar.tsx` (lines 18-23)
+2. Update href attributes to match your page sections
+
+### Social Media Links
+1. Update Facebook link in `src/components/Footer.tsx` (line 69)
+2. Add more social media links following the same pattern
+
+### External Links
+1. Update domain links in Footer.tsx
+2. Add any additional external links as needed
+
+## How to Update Blog Posts for SEO
+
+### Adding New Blog Posts
+1. Edit the `blogPosts` array in `src/components/BlogSection.tsx`
+2. Each post should include:
+   - title: SEO-optimized headline
+   - excerpt: Brief description with keywords
+   - keywords: Relevant SEO keywords
+   - date: Publication date
+   - author: Author name
+   - category: Post category
+
+### SEO Keywords to Focus On
+- "manpower supply Saudi Arabia"
+- "equipment rental Saudi Arabia" 
+- "construction workers Saudi Arabia"
+- "skilled workers Saudi Arabia"
+- "heavy machinery rental"
+- "construction equipment Saudi Arabia"
+- "contracting services Saudi Arabia"
+
+### Blog Images
+1. Add new images to `/public/lovable-uploads/` or `/public/blog/`
+2. Use relevant construction/equipment photos
+3. Optimize images for web (under 500KB)
+
+## How to Replace Google Maps API Key
+
+### Setting up Google Maps
+1. Get Google Maps API key from Google Cloud Console
+2. Add the API key to your environment variables
+3. Update the Maps component in `src/components/ContactSection.tsx`
+4. Replace the placeholder content (lines 147-156) with actual Google Maps embed
+
+### Maps Integration Code Example
+```javascript
+// Replace placeholder with:
+<iframe
+  src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=9P9F+8JH9P9F7H6+Al-Tarf,Saudi+Arabia`}
+  width="100%"
+  height="300"
+  style={{ border: 0 }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+></iframe>
+```
+
+## Contact Form Setup
+
+### Form Functionality
+1. Current form uses mailto: links to send emails
+2. Form data is compiled and opens default email client
+3. For server-side processing, integrate with a backend service
+
+### Email Integration
+1. Form sends to: contact@asmc.com.sa
+2. Update email address in `src/components/ContactSection.tsx` line 17
+3. Consider using services like EmailJS for better form handling
+
+## Marketing Manager Information
+
+### Updating Manager Details
+1. Edit `marketingManagers` array in `src/components/ContactSection.tsx` (lines 53-60)
+2. Add/remove managers as needed
+3. Update names and phone numbers
+
+## Design System Colors
+
+### Brand Colors
+1. Primary: Dark blue-gray (construction theme)
+2. Accent: Orange (call-to-action elements)
+3. Edit colors in `src/index.css` and `tailwind.config.ts`
+
+### Updating Brand Colors
+1. Primary colors: Update CSS variables in `src/index.css` (lines 19-32)
+2. Custom colors: Update in `tailwind.config.ts` (lines 67-89)
+
+## SEO Optimization
+
+### Page Title and Meta Tags
+1. Update in `index.html`
+2. Add relevant keywords for Saudi Arabia manpower and equipment
+3. Include Arabic terms for local SEO
+
+### Structured Data
+1. Consider adding JSON-LD structured data for business
+2. Include business hours, contact info, and services
+3. Add to `index.html` head section
+
+## Maintenance Tips
+
+### Regular Updates
+1. Update blog posts monthly with industry content
+2. Keep contact information current
+3. Update service offerings as business evolves
+4. Add new project photos to showcase work
+
+### Performance
+1. Optimize images before adding to public folder
+2. Keep page load times under 3 seconds
+3. Test on mobile devices regularly
+
+### SEO Monitoring
+1. Monitor keyword rankings for target terms
+2. Update blog content with current industry trends
+3. Ensure all images have descriptive alt tags
+
+## Deployment
+
+### Building for Production
+1. Run `npm run build` to create production build
+2. Deploy `/dist` folder to your hosting service
+3. Ensure domains (amtc.com.sa, asmc.com.sa) point to hosting
+
+### Domain Setup
+1. Configure DNS records for both domains
+2. Set up SSL certificates
+3. Consider using a CDN for better performance in Saudi Arabia
+
+---
+
+For technical support or advanced customizations, consult with a web developer familiar with React and Tailwind CSS.
