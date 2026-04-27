@@ -1,6 +1,6 @@
 import "server-only";
 
-import { eq, and, desc } from "drizzle-orm";
+import { eq, desc } from "drizzle-orm";
 import { db } from "../db";
 import { employees, users } from "../db/schema";
 import { decryptField } from "../crypto/field";

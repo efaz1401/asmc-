@@ -19,7 +19,7 @@ export default async function MyProfile() {
         <Topbar user={ctx.user} />
         <main className="portal-main">
           <div className="portal-card portal-error">
-            Your employee profile hasn't been set up yet. Ask HR.
+            Your employee profile hasn&apos;t been set up yet. Ask HR.
           </div>
         </main>
       </>

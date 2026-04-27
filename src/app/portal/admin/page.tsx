@@ -1,4 +1,4 @@
-import { eq, sql, desc, and } from "drizzle-orm";
+import { eq, sql, desc } from "drizzle-orm";
 import { Topbar } from "../_components/Topbar";
 import { requireRole, onboardingNextStep } from "@/portal/auth/rbac";
 import { redirect } from "next/navigation";

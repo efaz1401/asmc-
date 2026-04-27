@@ -16,7 +16,8 @@ export default async function MyDashboard() {
 
   const me = await getEmployeeByUserId(ctx.user.id);
   // Last 30 days of attendance count
-  const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+  const nowMs = new Date().getTime();
+  const since = new Date(nowMs - 30 * 24 * 60 * 60 * 1000);
   const sinceStr = since.toISOString().slice(0, 10);
   const recentAttendance = me
     ? await db
@@ -51,7 +52,7 @@ export default async function MyDashboard() {
 
         {!me && (
           <div className="portal-card portal-error">
-            Your employee profile hasn't been set up yet. Ask HR to complete it.
+            Your employee profile hasn&apos;t been set up yet. Ask HR to complete it.
           </div>
         )}
 

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Topbar } from "../../_components/Topbar";
 import { requireRole } from "@/portal/auth/rbac";
 import { listEmployees } from "@/portal/data/employees";
@@ -20,9 +21,9 @@ export default async function EmployeesList({
       <main className="portal-main">
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <h1 style={{ marginTop: 0 }}>Employees</h1>
-          <a href="/portal/admin/employees/new" className="portal-btn">
+          <Link href="/portal/admin/employees/new" className="portal-btn">
             + Add employee
-          </a>
+          </Link>
         </div>
 
         <form className="portal-card" method="get" style={{ display: "flex", gap: 12, alignItems: "end" }}>
@@ -65,7 +66,7 @@ export default async function EmployeesList({
               {rows.map(({ e }) => (
                 <tr key={e.id}>
                   <td>
-                    <a href={`/portal/admin/employees/${e.id}`}>{e.fullNameEn}</a>
+                    <Link href={`/portal/admin/employees/${e.id}`}>{e.fullNameEn}</Link>
                     {e.fullNameAr && <div className="portal-muted" style={{ fontSize: 12 }}>{e.fullNameAr}</div>}
                   </td>
                   <td>{e.jobTitle ?? "—"}</td>
@@ -86,7 +87,7 @@ export default async function EmployeesList({
                     </span>
                   </td>
                   <td>
-                    <a href={`/portal/admin/employees/${e.id}`}>Open</a>
+                    <Link href={`/portal/admin/employees/${e.id}`}>Open</Link>
                   </td>
                 </tr>
               ))}

@@ -1,4 +1,5 @@
 import { ensureCsrfToken } from "@/portal/auth/csrf";
+import Link from "next/link";
 import type { User } from "@/portal/db/schema";
 
 export async function Topbar({ user }: { user: User }) {
@@ -12,24 +13,24 @@ export async function Topbar({ user }: { user: User }) {
         <nav className="portal-topbar__nav">
           {isAdmin ? (
             <>
-              <a href="/portal/admin">Dashboard</a>
-              <a href="/portal/admin/employees">Employees</a>
-              <a href="/portal/admin/leave">Leave</a>
-              <a href="/portal/admin/attendance">Attendance</a>
-              <a href="/portal/admin/reviews">Reviews</a>
-              <a href="/portal/admin/payroll">Payroll</a>
-              <a href="/portal/admin/users">Users</a>
-              <a href="/portal/admin/audit">Audit log</a>
+              <Link href="/portal/admin">Dashboard</Link>
+              <Link href="/portal/admin/employees">Employees</Link>
+              <Link href="/portal/admin/leave">Leave</Link>
+              <Link href="/portal/admin/attendance">Attendance</Link>
+              <Link href="/portal/admin/reviews">Reviews</Link>
+              <Link href="/portal/admin/payroll">Payroll</Link>
+              <Link href="/portal/admin/users">Users</Link>
+              <Link href="/portal/admin/audit">Audit log</Link>
             </>
           ) : (
             <>
-              <a href="/portal/me">Dashboard</a>
-              <a href="/portal/me/profile">Profile</a>
-              <a href="/portal/me/documents">Documents</a>
-              <a href="/portal/me/leave">Leave</a>
-              <a href="/portal/me/attendance">Attendance</a>
-              <a href="/portal/me/reviews">Reviews</a>
-              <a href="/portal/me/payslips">Payslips</a>
+              <Link href="/portal/me">Dashboard</Link>
+              <Link href="/portal/me/profile">Profile</Link>
+              <Link href="/portal/me/documents">Documents</Link>
+              <Link href="/portal/me/leave">Leave</Link>
+              <Link href="/portal/me/attendance">Attendance</Link>
+              <Link href="/portal/me/reviews">Reviews</Link>
+              <Link href="/portal/me/payslips">Payslips</Link>
             </>
           )}
         </nav>

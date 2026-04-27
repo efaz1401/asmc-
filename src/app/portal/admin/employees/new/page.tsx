@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { Topbar } from "../../../_components/Topbar";
 import { requireRole } from "@/portal/auth/rbac";
 import { ensureCsrfToken, assertCsrfFromForm } from "@/portal/auth/csrf";
@@ -190,7 +191,7 @@ export default async function NewEmployee({
 
           <div style={{ display: "flex", gap: 8 }}>
             <button type="submit" className="portal-btn">Create employee</button>
-            <a href="/portal/admin/employees" className="portal-btn portal-btn--ghost">Cancel</a>
+            <Link href="/portal/admin/employees" className="portal-btn portal-btn--ghost">Cancel</Link>
           </div>
         </form>
       </main>

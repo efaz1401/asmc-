@@ -5,7 +5,7 @@ import { requireRole } from "@/portal/auth/rbac";
 import { ensureCsrfToken, assertCsrfFromForm } from "@/portal/auth/csrf";
 import { getEmployeeWithUser, revealSensitive } from "@/portal/data/employees";
 import { db } from "@/portal/db";
-import { employees, users } from "@/portal/db/schema";
+import { employees } from "@/portal/db/schema";
 import { eq } from "drizzle-orm";
 import { encryptField } from "@/portal/crypto/field";
 import { verifyPassword } from "@/portal/auth/password";
