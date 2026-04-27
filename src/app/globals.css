@@ -32,11 +32,132 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: transparent;
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
+  position: relative;
+}
+
+.page-shell {
+  position: relative;
+  z-index: 1;
+}
+
+/* ----- Animated background (drifting color blobs + scroll-driven hue) ----- */
+
+.bg-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--background);
+  /* As you scroll, rotate the hue of every blob inside this layer.
+     The CSS var --bg-scroll is updated by BackgroundFX.tsx (0..1). */
+  filter: hue-rotate(calc(var(--bg-scroll, 0) * 320deg));
+  transition: filter 200ms linear;
+}
+
+.bg-fx__blob {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  will-change: transform;
+}
+
+.bg-fx__blob--a {
+  background: radial-gradient(circle at center, #1d4ed8 0%, transparent 62%);
+  top: -25%;
+  left: -15%;
+  animation: bg-fx-a 26s ease-in-out infinite alternate;
+}
+
+.bg-fx__blob--b {
+  background: radial-gradient(circle at center, #14b8a6 0%, transparent 62%);
+  top: 20%;
+  right: -20%;
+  animation: bg-fx-b 32s ease-in-out infinite alternate;
+}
+
+.bg-fx__blob--c {
+  background: radial-gradient(circle at center, #7c3aed 0%, transparent 62%);
+  bottom: -25%;
+  left: 15%;
+  animation: bg-fx-c 36s ease-in-out infinite alternate;
+}
+
+.bg-fx__blob--d {
+  background: radial-gradient(circle at center, #e11d48 0%, transparent 62%);
+  bottom: 5%;
+  right: 25%;
+  animation: bg-fx-d 30s ease-in-out infinite alternate;
+  opacity: 0.45;
+}
+
+.bg-fx__grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(244, 241, 234, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+@keyframes bg-fx-a {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18vw, 12vh, 0) scale(1.15);
+  }
+  100% {
+    transform: translate3d(8vw, 22vh, 0) scale(0.95);
+  }
+}
+
+@keyframes bg-fx-b {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-15vw, 18vh, 0) scale(0.9);
+  }
+  100% {
+    transform: translate3d(-22vw, 4vh, 0) scale(1.18);
+  }
+}
+
+@keyframes bg-fx-c {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(14vw, -10vh, 0) scale(1.12);
+  }
+  100% {
+    transform: translate3d(-6vw, -22vh, 0) scale(0.92);
+  }
+}
+
+@keyframes bg-fx-d {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-18vw, -8vh, 0) scale(0.85);
+  }
+  100% {
+    transform: translate3d(-4vw, -18vh, 0) scale(1.1);
+  }
 }
 
 ::selection {
@@ -173,7 +294,11 @@ html[dir="rtl"] .marquee {
   .marquee,
   .blink,
   .shimmer,
-  .spin-slow {
+  .spin-slow,
+  .bg-fx__blob {
     animation: none;
+  }
+  .bg-fx {
+    transition: none;
   }
 }

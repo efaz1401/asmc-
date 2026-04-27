@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif, JetBrains_Mono, Noto_Naskh_Arabic } from "next
 import "./globals.css";
 import { SITE } from "@/lib/site";
 import { OrganizationSchema, WebSiteSchema } from "@/components/StructuredData";
+import { BackgroundFX } from "@/components/BackgroundFX";
 
 const sans = Inter({
   variable: "--font-sans",
@@ -105,7 +106,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
-        {children}
+        <BackgroundFX />
+        <div className="page-shell">{children}</div>
         <OrganizationSchema />
         <WebSiteSchema />
       </body>
