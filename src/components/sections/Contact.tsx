@@ -13,9 +13,10 @@ export function Contact({ lang = "en" }: { lang?: "en" | "ar" }) {
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("submitting");
     setError("");
-    const fd = new FormData(e.currentTarget);
+    const fd = new FormData(form);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -35,7 +36,7 @@ export function Contact({ lang = "en" }: { lang?: "en" | "ar" }) {
         return;
       }
       setStatus("ok");
-      e.currentTarget.reset();
+      form.reset();
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Network error.");
