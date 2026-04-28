@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# asmc.com.sa
 
-## Getting Started
+The marketing site for **Al-Anoud Specialized Manpower Co.** — a Saudi
+manpower-supply and equipment-rental contractor. Built on Next.js 16 + Tailwind
+v4, EN + Arabic (RTL) bilingual, SEO-tuned for "manpower supply company in
+Saudi Arabia".
 
-First, run the development server:
+## Stack
+
+- **Framework**: Next.js 16 (App Router, React 19)
+- **Styling**: Tailwind v4 + a small set of custom CSS tokens
+- **Content**: fully static EN and AR pages, contact form `POST`s to a server
+  route
+- **SEO**: per-page metadata, canonicals, hreflang, JSON-LD (Organization,
+  LocalBusiness, Service, Breadcrumbs, FAQPage), dynamic OG image, dynamic
+  favicon, `sitemap.xml`, `robots.txt`
+- **Deploy**: see [DEPLOY.md](./DEPLOY.md) for Vercel / Hostinger VPS /
+  Hostinger shared instructions
+
+## Requirements
+
+- Node **20 LTS** or newer
+- npm **10+**
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3010.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script | What it does |
+|---|---|
+| `npm run dev` | Start the dev server on port 3010 |
+| `npm run build` | Production build (static pages + server routes) |
+| `npm start` | Run the production build on port 3010 |
+| `npm run lint` | ESLint on `src/` |
 
-## Learn More
+## Environment variables
 
-To learn more about Next.js, take a look at the following resources:
+The marketing site runs with **no required env vars**. The contact form has
+two optional ones — without them the endpoint returns `202 Accepted` and
+logs to the server console instead of emailing.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Optional — enables real email sending from /api/contact
+RESEND_API_KEY=
+CONTACT_TO=contact@asmc.com.sa
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Copy `.env.example` to `.env.local` if you want to fill these in locally.
 
-## Deploy on Vercel
+## Repository layout
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+  app/                    # App Router routes
+    page.tsx              # EN home
+    ar/                   # Arabic (RTL) mirror
+    services/             # 5 service detail pages
+    about/ industries/ contact/ careers/ not-found.tsx
+    api/contact/route.ts  # contact form handler
+    sitemap.ts robots.ts icon.tsx opengraph-image.tsx
+    globals.css
+    portal/               # (employee portal — separate PR, ignore for marketing deploy)
+  components/             # Header, Footer, Logo, BackgroundFX, etc.
+public/                   # favicons, static images
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+See **[DEPLOY.md](./DEPLOY.md)**. Three documented paths:
+
+1. **Vercel** — zero-config, free tier, `git push` → live in 45 seconds.
+2. **Hostinger VPS (KVM)** — nginx + `node` + `systemd`, full control.
+3. **Hostinger shared hosting** — requires static export and loses the
+   contact-form endpoint (use a third-party form service).
+
+## License
+
+© ASMC. All rights reserved.
